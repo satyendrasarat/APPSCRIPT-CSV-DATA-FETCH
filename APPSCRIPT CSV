@@ -1,0 +1,183 @@
+
+function onOpen(e) {
+  
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('Auto Menu')
+      .addItem('all item', 'run1')
+          .addItem('FIRST DAY', 'Function1')
+          .addItem('SECOND DAY', 'Function2')
+          .addItem('THIRD DAY', 'Function3')
+          .addItem('FOURTH DAY', 'Function4')
+          .addItem('FIFTH DAY', 'Function5')
+          .addItem('BULKDATA', 'Function7')
+          .addItem('DELETE', 'DEL')
+      .addToUi();
+}
+function run1() {
+
+   Function1();
+  Function2();
+  Function3();
+  Function4();
+  Function5();
+  Function7();
+};
+
+function Function1() {
+  SpreadsheetApp.getUi().alert('You clicked the first DAY item!');
+}
+ 
+function Function2() {
+  SpreadsheetApp.getUi().alert('You clicked the second DAY item!');
+}
+function Function3() {
+  SpreadsheetApp.getUi().alert('You clicked the third DAY item!');
+}
+function Function4() {
+  SpreadsheetApp.getUi().alert('You clicked the fourth DAY item!');
+}
+function Function5() {
+  SpreadsheetApp.getUi().alert('You clicked the five DAY item!');
+}
+function Function7() {
+  SpreadsheetApp.getUi().alert('You clicked the BULKDATA item!');
+}
+
+
+
+function Function1() {
+
+var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("1"); 
+var url =sheet.getRange("b11").getValue(); 
+
+console.log(url) 
+
+var zipblob =UrlFetchApp.fetch(url).getBlob();
+
+//var unzipblob = Utilities. unzip(zipblob) ; //
+//var unzipstr= unzipblob[1].getDataAsString();//
+var unzipstr= zipblob.getDataAsString(); 
+var csv = Utilities.parseCsv(unzipstr); 
+
+var ss = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('2'); 
+ss.clearContents 
+ss.getRange(2, 2, csv.length, csv[0].length).setValues(csv); 
+  
+}
+
+function Function2() {
+
+var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("1"); 
+var url =sheet.getRange("b12").getValue(); 
+
+console.log(url) 
+
+var zipblob =UrlFetchApp.fetch(url).getBlob();
+
+//var unzipblob = Utilities. unzip(zipblob) ; //
+//var unzipstr= unzipblob[1].getDataAsString();//
+var unzipstr= zipblob.getDataAsString(); 
+var csv = Utilities.parseCsv(unzipstr); 
+
+var ss = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('3'); 
+ss.clearContents 
+ss.getRange(2, 2, csv.length, csv[0].length).setValues(csv); 
+  
+}
+function Function3() {
+
+var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("1"); 
+var url =sheet.getRange("b13").getValue(); 
+
+console.log(url) 
+
+var zipblob =UrlFetchApp.fetch(url).getBlob();
+
+//var unzipblob = Utilities. unzip(zipblob) ; //
+//var unzipstr= unzipblob[1].getDataAsString();//
+var unzipstr= zipblob.getDataAsString(); 
+var csv = Utilities.parseCsv(unzipstr); 
+
+var ss = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('4'); 
+ss.clearContents 
+ss.getRange(2, 2, csv.length, csv[0].length).setValues(csv); 
+  
+}
+function Function4() {
+
+var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("1"); 
+var url =sheet.getRange("b14").getValue(); 
+
+console.log(url) 
+
+var zipblob =UrlFetchApp.fetch(url).getBlob();
+
+//var unzipblob = Utilities. unzip(zipblob) ; //
+//var unzipstr= unzipblob[1].getDataAsString();//
+var unzipstr= zipblob.getDataAsString(); 
+var csv = Utilities.parseCsv(unzipstr); 
+
+var ss = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('5'); 
+ss.clearContents 
+ss.getRange(2, 2, csv.length, csv[0].length).setValues(csv); 
+  
+}
+function Function5() {
+
+var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("1"); 
+var url =sheet.getRange("b15").getValue(); 
+
+console.log(url) 
+
+var zipblob =UrlFetchApp.fetch(url).getBlob();
+
+//var unzipblob = Utilities. unzip(zipblob) ; //
+//var unzipstr= unzipblob[1].getDataAsString();//
+var unzipstr= zipblob.getDataAsString(); 
+var csv = Utilities.parseCsv(unzipstr); 
+
+var ss = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('6'); 
+ss.clearContents 
+ss.getRange(2, 2, csv.length, csv[0].length).setValues(csv); 
+  
+}
+function Function7() {
+
+var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("1"); 
+var url =sheet.getRange("b10").getValue(); 
+
+console.log(url) 
+
+var zipblob =UrlFetchApp.fetch(url).getBlob();
+
+//var unzipblob = Utilities. unzip(zipblob) ; //
+//var unzipstr= unzipblob[1].getDataAsString();//
+var unzipstr= zipblob.getDataAsString(); 
+var csv = Utilities.parseCsv(unzipstr); 
+
+var ss = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('7'); 
+ss.clearContents 
+ss.getRange(2, 2, csv.length, csv[0].length).setValues(csv); 
+  
+}
+function DEL() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  var sheet = spreadsheet.getActiveSheet();
+  sheet.getRange(1, 1, sheet.getMaxRows(), sheet.getMaxColumns()).activate();
+   spreadsheet.getActiveRangeList().clear({contentsOnly: true, skipFilteredRows: true});
+  spreadsheet.setActiveSheet(spreadsheet.getSheetByName('2'), true);
+  spreadsheet.getActiveRangeList().clear({contentsOnly: true, skipFilteredRows: true});
+  spreadsheet.setActiveSheet(spreadsheet.getSheetByName('3'), true);
+  spreadsheet.getActiveRangeList().clear({contentsOnly: true, skipFilteredRows: true});
+  spreadsheet.setActiveSheet(spreadsheet.getSheetByName('4'), true);
+  sheet = spreadsheet.getActiveSheet();
+  sheet.getRange(1, 1, sheet.getMaxRows(), sheet.getMaxColumns()).activate();
+  spreadsheet.getActiveRangeList().clear({contentsOnly: true, skipFilteredRows: true});
+  spreadsheet.setActiveSheet(spreadsheet.getSheetByName('5'), true);
+  spreadsheet.getActiveRangeList().clear({contentsOnly: true, skipFilteredRows: true});
+  spreadsheet.setActiveSheet(spreadsheet.getSheetByName('6'), true);
+  spreadsheet.getActiveRangeList().clear({contentsOnly: true, skipFilteredRows: true});
+  spreadsheet.setActiveSheet(spreadsheet.getSheetByName('7'), true);
+  spreadsheet.getRange('A:K').activate();
+  spreadsheet.getActiveRangeList().clear({contentsOnly: true, skipFilteredRows: true});
+};
